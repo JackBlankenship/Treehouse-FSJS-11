@@ -33,7 +33,7 @@
 			"response": []
 		},
 		{
-			"name": "Get Course",
+			"name": "Get Course (FAIL - no Authorization)",
 			"request": {
 				"url": "localhost:5000/api/courses/57029ed4795118be119cc43d",
 				"method": "GET",
@@ -41,6 +41,31 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Awesome Recipe\",\n    \"prepTime\": 0,\n    \"ingredients\": [\n        {\n            \"item\": \"Potatoes\"\n        },\n        {\n        }\n    ],\n    \"steps\": [\n    ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Course (PASS - Authorization)",
+			"request": {
+				"url": "localhost:5000/api/courses/57029ed4795118be119cc43d",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic am9lQHNtaXRoLmNvbTpwYXNzd29yZA==",
 						"description": ""
 					}
 				],

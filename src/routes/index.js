@@ -64,7 +64,7 @@ router.get('/api/courses', function (req, res, next) {
 });
 
 // GET single course for EXTRA CREDIT mid.apiAuthenticate
-router.get('/api/courses/:courseId', function (req, res, next) {
+router.get('/api/courses/:courseId', mid.apiAuthenticate, function (req, res, next) {
   console.log("route get /api/courses/:courseId")
   Course.findById(req.params.courseId)
     .populate('user', 'fullName')     // only show the related fullName from Users
