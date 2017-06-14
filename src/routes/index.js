@@ -67,8 +67,11 @@ router.get('/api/courses', function (req, res, next) {
 router.get('/api/courses/:courseId', mid.apiAuthenticate, function (req, res, next) {
   console.log("route get /api/courses/:courseId")
   Course.findById(req.params.courseId)
-    .populate('user', 'fullName')     // only show the related fullName from Users
-    .populate('reviews')              // populate all fields from Review into reviews array.
+    .populate('user', '_id fullName')                 // only show the related _id and fullName from Users
+    .populate({ 
+      path: 'reviews',
+      populate: { path: 'user', select: 'fullName'}   // only show _id and fullName from Users
+      })                                              // populate all fields from Review into reviews array.
     .exec( function (err, doc) {
       console.log("exec course.findByID")
       if (err) return next(err);
